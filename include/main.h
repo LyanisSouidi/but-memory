@@ -3,6 +3,9 @@
 
 #include<graph.h>
 
+#define WINDOW_WIDTH 1250
+#define WINDOW_HEIGHT 750
+
 typedef struct {
     int x, y, L, H;
 } Zone;

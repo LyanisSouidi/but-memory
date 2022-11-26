@@ -2,6 +2,8 @@
 #include<stdlib.h>
 #include<graph.h>
 #include"../include/menu.h"
+#define WINDOW_WIDTH 1250
+#define WINDOW_HEIGHT 750
 
 typedef struct {
     int x, y, L, H;
@@ -28,7 +30,7 @@ void dessinerzone(Zone z) {
 
 int main(void){
     InitialiserGraphique();
-    CreerFenetre(375,175,1250,750);
+    CreerFenetre(375,175,WINDOW_WIDTH,WINDOW_HEIGHT);
     
     menu();
     
