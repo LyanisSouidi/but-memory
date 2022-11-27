@@ -23,7 +23,7 @@ $(EXE) : $(OFILES)
 
 ### REGLES OPTIONNELLES ###
 
-start : $(EXE)
+run : $(EXE)
 	./$(EXE)
 
 clean :
