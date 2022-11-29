@@ -8,12 +8,12 @@
 
 typedef struct {
     int x, y, L, H;
-} Zone;
+} zone;
 
-int checkzone(Zone z, int x, int y);
+int check_zone(zone z, int x, int y);
 
-void dessinerbouton(Zone z, char* texte, couleur arriereplan, couleur bordure, couleur couleurtexte, int tailletexte);
+void dessiner_bouton(zone z, char* texte, couleur arriere_plan, couleur bordure, couleur couleur_texte, int taille_texte);
 
-void dessinerzone(Zone z);
+void dessiner_zone(zone z);
 
 #endif

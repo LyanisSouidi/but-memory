@@ -7,24 +7,23 @@
 
 typedef struct {
     int x, y, L, H;
-} Zone;
+} zone;
  
- /*Check si une position (x,y) se trouve dans la zone; retourne 1 si dedans, sinon 0.*/
-int checkzone(Zone z, int x, int y) {
+int check_zone(zone z, int x, int y) {
     return x >= z.x && x <= z.x + z.L && y >= z.y && y <= z.y + z.H;
 }
 
-void dessinerbouton(Zone z, char* texte, couleur arriereplan, couleur bordure, couleur couleurtexte, int tailletexte) {
-    ChoisirCouleurDessin(arriereplan);
+void dessiner_bouton(zone z, char* texte, couleur arriere_plan, couleur bordure, couleur couleur_texte, int taille_texte) {
+    ChoisirCouleurDessin(arriere_plan);
     RemplirRectangle(z.x, z.y, z.L, z.H);
     
     ChoisirCouleurDessin(bordure);
     DessinerRectangle(z.x, z.y, z.L, z.H);
-    ChoisirCouleurDessin(couleurtexte);
-    EcrireTexte(z.x + z.L / 2 - TailleChaineEcran(texte, tailletexte) / 2, z.y + z.H / 2 + TailleSupPolice(tailletexte) / 2, texte, tailletexte);
+    ChoisirCouleurDessin(couleur_texte);
+    EcrireTexte(z.x + z.L / 2 - TailleChaineEcran(texte, taille_texte) / 2, z.y + z.H / 2 + TailleSupPolice(taille_texte) / 2, texte, taille_texte);
 }
 
-void dessinerzone(Zone z) { 
+void dessiner_zone(zone z) { 
     RemplirRectangle(z.x, z.y, z.L, z.H);
 }
 
