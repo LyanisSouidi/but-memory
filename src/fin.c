@@ -4,8 +4,7 @@
 #include"../include/main.h"
 #include"../include/timer.h"
 
-void fin(unsigned long int timer) {
-
+int fin(unsigned long int timer) {
     zone recommencer = {375, 665, 150, 35};
     zone quitter_fin = {735, 665, 100, 35};
 
@@ -28,13 +27,20 @@ void fin(unsigned long int timer) {
     dessiner_bouton(recommencer, "Recommencer", CouleurParNom("black"), CouleurParNom("dark green"), CouleurParNom("dark green"), 1);
 
     dessiner_bouton(quitter_fin, "QUITTER", CouleurParNom("red"), CouleurParNom("red"), CouleurParNom("white"), 1);
-
-    SourisPosition();
+    
+    int boucle = 1;
+    while (boucle) {
+        SourisPosition();
 
         if(SourisCliquee()) {
-
-            if(check_zone(quitter_fin, _X, _Y))
-                Touche();
-            
+	    if (check_zone(recommencer, _X, _Y)) {
+	        boucle = 0;
+	       	return 1;
+	    }
+            if (check_zone(quitter_fin, _X, _Y)) {
+	        boucle = 0;
+		return 0;
+	    }
         }
+    }
 }

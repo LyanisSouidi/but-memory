@@ -2,6 +2,8 @@
 #include<stdlib.h>
 #include<graph.h>
 #include"../include/main.h"
+#include"../include/timer.h"
+#include"../include/fin.h"
 
 #define GAME_MARGIN_RIGHT 20
 #define GAME_MARGIN_LEFT 20
@@ -19,7 +21,7 @@ card create_card(int x, int y, int L, int H, char *file) {
     return carte;
 }
 
-void game(int colonnes, int lignes) {
+int game(int colonnes, int lignes) {
     EffacerEcran(CouleurParComposante(54, 57, 63));
     ChoisirCouleurDessin(CouleurParNom("white"));
 
@@ -41,6 +43,12 @@ void game(int colonnes, int lignes) {
 		    cards[l][c] = create_card(GAME_MARGIN_RIGHT + (c * case_max_dimensions), GAME_MARGIN_TOP + (l * case_max_dimensions), case_max_dimensions - (2 * case_margin), case_max_dimensions - (2 * case_margin));
         }
     }
+    unsigned long int timer = start_timer(0);
+
+    int boucle = 1;
+    while (boucle) {
+      update_timer(timer);
+    }
     
-    Touche();
+    return fin(timer);
 }
