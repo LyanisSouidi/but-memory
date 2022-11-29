@@ -29,6 +29,9 @@ run : $(EXE)
 clean :
 	-rm -rf $(ODIR)
 
+mrproper :
+	clean but
+
 ### BUTS FACTICES ###
 
-.PHONY : but start clean
+.PHONY : but run clean mrproper
