@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<graph.h>
+#include<time.h>
 #include"../include/main.h"
 #include"../include/timer.h"
 #include"../include/fin.h"
@@ -22,8 +23,46 @@ card create_card(int x, int y, int L, int H, char *file) {
 }
 
 int game(int colonnes, int lignes) {
+    int i,j;
+    int used, r;
+    int* tab = malloc(sizeof(int) * (colonnes * lignes));
+    srand(time(NULL));
+
     EffacerEcran(CouleurParComposante(54, 57, 63));
     ChoisirCouleurDessin(CouleurParNom("white"));
+
+    for(i=0; i < (colonnes * lignes) / 2;) {
+        r = rand() % 60 + 1;
+        used=0;
+
+        for(j=0; j < i; j++) {
+            if(tab[j] == r) {
+                used = 1;
+                break;
+            }
+        }
+    
+        if(!used) {
+            tab[i] = r;
+            i++;
+        }
+    }
+
+    for (i=0; i<(colonnes*lignes)/2; i+=1) {
+    tab[i+((colonnes*lignes)/2)] = tab[i];
+    }
+
+    if ((colonnes * lignes) > 1) 
+    {
+        size_t i;
+        for (i = 0; i < (colonnes * lignes) - 1; i++) 
+        {
+          size_t j = i + rand() / (RAND_MAX / ((colonnes * lignes) - i) + 1);
+          int t = tab[j];
+          tab[j] = tab[i];
+          tab[i] = t;
+        }
+    }    
 
     unsigned int case_max_width = (WINDOW_WIDTH - (GAME_MARGIN_RIGHT + GAME_MARGIN_LEFT)) / colonnes;
     unsigned int case_max_height = (WINDOW_HEIGHT - (GAME_MARGIN_TOP + GAME_MARGIN_BOTTOM)) / lignes;
