@@ -77,8 +77,8 @@ int game(int colonnes, int lignes) {
         for (c = 0; c < colonnes; c++) {
 		    sprintf(file, "../img/cards/%dx%d/%d.png", colonnes, lignes, tab[i]);
             cards[l][c] = create_card(
-                GAME_MARGIN_RIGHT + (c * case_max_dimensions),
-                GAME_MARGIN_TOP + (l * case_max_dimensions),
+                GAME_MARGIN_RIGHT + (((WINDOW_WIDTH - (GAME_MARGIN_RIGHT + GAME_MARGIN_LEFT)) - (case_max_dimensions * colonnes)) / 2) + (c * case_max_dimensions),
+                GAME_MARGIN_TOP + (((WINDOW_HEIGHT - (GAME_MARGIN_TOP + GAME_MARGIN_BOTTOM)) - (case_max_dimensions * lignes)) / 2) + (l * case_max_dimensions),
                 case_max_dimensions - (2 * case_margin), case_max_dimensions - (2 * case_margin),
                 file
             );
