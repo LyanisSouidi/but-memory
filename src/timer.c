@@ -4,8 +4,8 @@
 #define DELTA 1000000L
 
 void update_timer(unsigned long int start) {
-	unsigned int secondes = ((Microsecondes() - start) / DELTA);
-	unsigned int minutes = 0;
+	int secondes = ((Microsecondes() - start) / DELTA);
+	int minutes = 0;
 	char buf[100];
 		
 	while (secondes >= 60) {
@@ -29,5 +29,5 @@ unsigned long int start_timer(unsigned long int start) {
 }
 
 unsigned long int stop_timer(unsigned long int start) {
-	return Microsecondes()-start;
+	return Microsecondes() - start;
 }

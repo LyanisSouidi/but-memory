@@ -8,7 +8,7 @@
 typedef struct {
     int x, y, L, H;
 } zone;
- 
+
 int check_zone(zone z, int x, int y) {
     return x >= z.x && x <= z.x + z.L && y >= z.y && y <= z.y + z.H;
 }

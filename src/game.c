@@ -16,57 +16,53 @@ typedef struct {
     char *file;
 } card;
 
-card create_card(int x, int y, int L, int H, char *file) {
+card create_card(int x, int y,  int L, int H, char *file) {
     card carte = {x, y, L, H, 0, 0, file};
     
     return carte;
 }
 
 int game(int colonnes, int lignes) {
-    int i,j;
-    int used, r;
+    int i,j, t, used, r;
+    int i, j, l, c, case_max_width, case_max_height, case_max_dimensions, case_margin, boucle;
+    unsigned long int timer;
+    size_t k, m;
     int* tab = malloc(sizeof(int) * (colonnes * lignes));
     srand(time(NULL));
 
     EffacerEcran(CouleurParComposante(54, 57, 63));
     ChoisirCouleurDessin(CouleurParNom("white"));
 
-    for(i=0; i < (colonnes * lignes) / 2;) {
+    for(i = 0; i < (colonnes * lignes) / 2;) {
         r = rand() % 60 + 1;
-        used=0;
+        used = 0;
 
-        for(j=0; j < i; j++) {
+        for (j = 0; j < i; j++) {
             if(tab[j] == r) {
                 used = 1;
                 break;
             }
         }
     
-        if(!used) {
+        if (!used) {
             tab[i] = r;
             i++;
         }
     }
 
-    for (i=0; i<(colonnes*lignes)/2; i+=1) {
-    tab[i+((colonnes*lignes)/2)] = tab[i];
+    for (i = 0; i < (colonnes * lignes) / 2; i++) {
+        tab[i + ((colonnes * lignes) / 2)] = tab[i];
     }
 
-    if ((colonnes * lignes) > 1) 
-    {
-        size_t i;
-        for (i = 0; i < (colonnes * lignes) - 1; i++) 
-        {
-          size_t j = i + rand() / (RAND_MAX / ((colonnes * lignes) - i) + 1);
-          int t = tab[j];
-          tab[j] = tab[i];
-          tab[i] = t;
-        }
-    }    
+    for (k = 0; k < (colonnes * lignes) - 1; k++) {
+        m = k + rand() / (RAND_MAX / ((colonnes * lignes) - k) + 1);
+        t = tab[m];
+        tab[m] = tab[k];
+        tab[k] = t;
+    }  
 
-    unsigned int case_max_width = (WINDOW_WIDTH - (GAME_MARGIN_RIGHT + GAME_MARGIN_LEFT)) / colonnes;
-    unsigned int case_max_height = (WINDOW_HEIGHT - (GAME_MARGIN_TOP + GAME_MARGIN_BOTTOM)) / lignes;
-    unsigned int case_max_dimensions;
+    case_max_width = (WINDOW_WIDTH - (GAME_MARGIN_RIGHT + GAME_MARGIN_LEFT)) / colonnes;
+    case_max_height = (WINDOW_HEIGHT - (GAME_MARGIN_TOP + GAME_MARGIN_BOTTOM)) / lignes;
 
     if (case_max_height <  case_max_width) {
         case_max_dimensions = case_max_height;
@@ -74,20 +70,20 @@ int game(int colonnes, int lignes) {
         case_max_dimensions = case_max_width;
     }
 
-    unsigned int case_margin = case_max_dimensions * 0.05;
+    case_margin = case_max_dimensions * 0.05;
     card cards[lignes][colonnes];
 
-    for (unsigned int l = 0; l < lignes; l += 1) {
-        for (unsigned int c = 0; c < colonnes; c += 1) {
+    for (l = 0; l < lignes; l++) {
+        for (c = 0; c < colonnes; c++) {
 		    cards[l][c] = create_card(GAME_MARGIN_RIGHT + (c * case_max_dimensions), GAME_MARGIN_TOP + (l * case_max_dimensions), case_max_dimensions - (2 * case_margin), case_max_dimensions - (2 * case_margin));
         }
     }
-    unsigned long int timer = start_timer(0);
+    timer = start_timer(0);
 
-    int boucle = 1;
+    boucle = 1;
     while (boucle) {
-      update_timer(timer);
+        update_timer(timer);
     }
     
     return fin(timer);
-}
+}s
