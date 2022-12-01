@@ -18,14 +18,14 @@ typedef struct {
 
 card create_card(int x, int y,  int L, int H, char *file) {
     card carte = {x, y, L, H, 0, 0, file};
-    
+    DessinerRectangle(x, y, L, H);
     return carte;
 }
 
 int game(int colonnes, int lignes) {
-    int i,j, t, used, r;
-    int i, j, l, c, case_max_width, case_max_height, case_max_dimensions, case_margin, boucle;
+    int i, j, t, used, r, l, c, case_max_width, case_max_height, case_max_dimensions, case_margin, boucle;
     unsigned long int timer;
+    char *file = (char*)malloc(30 * sizeof(char));
     size_t k, m;
     int* tab = malloc(sizeof(int) * (colonnes * lignes));
     srand(time(NULL));
@@ -72,10 +72,17 @@ int game(int colonnes, int lignes) {
 
     case_margin = case_max_dimensions * 0.05;
     card cards[lignes][colonnes];
-
+    i=0;
     for (l = 0; l < lignes; l++) {
         for (c = 0; c < colonnes; c++) {
-		    cards[l][c] = create_card(GAME_MARGIN_RIGHT + (c * case_max_dimensions), GAME_MARGIN_TOP + (l * case_max_dimensions), case_max_dimensions - (2 * case_margin), case_max_dimensions - (2 * case_margin));
+		    sprintf(file, "../img/cards/%dx%d/%d.png", colonnes, lignes, tab[i]);
+            cards[l][c] = create_card(
+                GAME_MARGIN_RIGHT + (c * case_max_dimensions),
+                GAME_MARGIN_TOP + (l * case_max_dimensions),
+                case_max_dimensions - (2 * case_margin), case_max_dimensions - (2 * case_margin),
+                file
+            );
+            i++;
         }
     }
     timer = start_timer(0);
@@ -86,4 +93,4 @@ int game(int colonnes, int lignes) {
     }
     
     return fin(timer);
-}s
+}
