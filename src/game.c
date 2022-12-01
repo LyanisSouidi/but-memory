@@ -4,23 +4,13 @@
 #include<time.h>
 #include"../include/main.h"
 #include"../include/timer.h"
+#include"../include/card.h"
 #include"../include/fin.h"
 
 #define GAME_MARGIN_RIGHT 20
 #define GAME_MARGIN_LEFT 20
 #define GAME_MARGIN_TOP 35
 #define GAME_MARGIN_BOTTOM 20
-
-typedef struct {
-    int x, y, L, H, displayed, found;
-    char *file;
-} card;
-
-card create_card(int x, int y,  int L, int H, char *file) {
-    card carte = {x, y, L, H, 0, 0, file};
-    DessinerRectangle(x, y, L, H);
-    return carte;
-}
 
 int game(int colonnes, int lignes) {
     int i, j, t, used, r, l, c, case_max_width, case_max_height, case_max_dimensions, case_margin, boucle;
