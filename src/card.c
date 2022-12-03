@@ -5,7 +5,7 @@
 
 typedef struct {
     zone zone;
-    int displayed, found;
+    int displayed, found, loaded, id;
     char *file;
 } card;
 
