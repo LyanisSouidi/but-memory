@@ -85,6 +85,17 @@ int game(int colonnes, int lignes) {
     boucle = 1;
     while (boucle) {
         update_timer(timer);
+
+        SourisPosition();
+        if (SourisCliquee()) {
+            for (l = 0; l < lignes; l++) {
+                for (c = 0; c < colonnes; c++) {
+                    if (check_zone(cards[l][c].zone, _X, _Y)) {
+                        cards[l][c] = show_card(cards[l][c]);
+                    }
+                }
+            }
+        }
     }
     
     return fin(timer);
