@@ -7,9 +7,9 @@ typedef struct {
     char *file;
 } card;
 
-void load_card(card carte);
+card load_card(card carte);
 
-void show_card(card carte);
+card show_card(card carte);
 
 card create_card(int x, int y,  int L, int H, int id, char *file);
 
