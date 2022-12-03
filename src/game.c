@@ -20,7 +20,11 @@ int game(int colonnes, int lignes) {
     int* tab = malloc(sizeof(int) * (colonnes * lignes));
     srand(time(NULL));
 
-    EffacerEcran(CouleurParComposante(54, 57, 63));
+    for (i = 1; i > -1; i--) {
+        ChoisirEcran(i);
+        EffacerEcran(CouleurParComposante(54, 57, 63));
+    }
+    
     ChoisirCouleurDessin(CouleurParNom("white"));
 
     for(i = 0; i < (colonnes * lignes) / 2;) {
