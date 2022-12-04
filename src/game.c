@@ -106,5 +106,5 @@ int game(int colonnes, int lignes) {
         }
     }
     
-    return fin(timer);
+    return fin(stop_timer(timer));
 }

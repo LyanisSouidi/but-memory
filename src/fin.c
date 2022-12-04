@@ -14,7 +14,6 @@ int fin(unsigned long int timer) {
     EcrireTexte(550, 150, "You Win !", 2);
 
     char buf[100];
-    timer = stop_timer(timer);
     unsigned int secondes = timer / DELTA;
     unsigned int minutes = 0;
     while (secondes >= 60) {
