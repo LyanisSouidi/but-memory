@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #include<graph.h>
 #include"../include/main.h"
 
@@ -27,8 +28,10 @@ card show_card(card carte) {
 }
 
 card create_card(int x, int y,  int L, int H, int id, char *file) {
+    char *filename = (char*)malloc(30 * sizeof(char));
+    memcpy(filename, file, 30);
     zone zone = {x, y, L, H};
-    card carte = {zone, 0, 0, 0, id, file};
+    card carte = {zone, 0, 0, 0, id, filename};
     DessinerRectangle(carte.zone.x, carte.zone.y, carte.zone.L, carte.zone.H);
     return carte;
 }
