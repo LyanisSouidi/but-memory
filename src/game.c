@@ -13,7 +13,7 @@
 #define GAME_MARGIN_BOTTOM 20
 
 int game(int colonnes, int lignes) {
-    int i, j, t, used, r, l, c, case_max_width, case_max_height, case_max_dimensions, case_margin, boucle;
+    int i, j, t, used, r, l, c, case_max_width, case_max_height, case_max_dimensions, case_margin, boucle, cheat;
     unsigned long int timer;
     char *file = (char*)malloc(30 * sizeof(char));
     size_t k, m;
@@ -85,6 +85,7 @@ int game(int colonnes, int lignes) {
     timer = start_timer(0);
 
     boucle = 1;
+    cheat=0;
     while (boucle) {
         update_timer(timer);
 
@@ -96,6 +97,29 @@ int game(int colonnes, int lignes) {
                         cards[l][c] = show_card(cards[l][c]);
                     }
                 }
+            }
+        }
+
+        if (ToucheEnAttente() && Touche()==XK_t){
+        cheat++;
+        }
+
+         while(cheat) {
+            timer = stop_timer(timer);
+            for (l = 0; l < lignes; l++) {
+                for (c = 0; c < colonnes; c++) {
+                    load_card(cards[l][c]);
+                }
+            }
+
+            CopierZone(0,2,GAME_MARGIN_RIGHT,GAME_MARGIN_TOP, WINDOW_WIDTH - (GAME_MARGIN_RIGHT + GAME_MARGIN_LEFT),WINDOW_HEIGHT - (GAME_MARGIN_TOP + GAME_MARGIN_BOTTOM),GAME_MARGIN_RIGHT,GAME_MARGIN_TOP);
+
+            CopierZone(1,0,GAME_MARGIN_RIGHT,GAME_MARGIN_TOP,WINDOW_WIDTH - (GAME_MARGIN_RIGHT + GAME_MARGIN_LEFT),WINDOW_HEIGHT - (GAME_MARGIN_TOP + GAME_MARGIN_BOTTOM),GAME_MARGIN_RIGHT,GAME_MARGIN_TOP);
+
+            if (Touche()==XK_t){
+                CopierZone(2,0,GAME_MARGIN_RIGHT,GAME_MARGIN_TOP,WINDOW_WIDTH - (GAME_MARGIN_RIGHT + GAME_MARGIN_LEFT),WINDOW_HEIGHT - (GAME_MARGIN_TOP + GAME_MARGIN_BOTTOM),GAME_MARGIN_RIGHT,GAME_MARGIN_TOP);
+                timer = start_timer(timer);
+                cheat=0;
             }
         }
     }
