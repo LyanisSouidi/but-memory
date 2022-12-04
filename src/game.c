@@ -69,7 +69,7 @@ int game(int colonnes, int lignes) {
     i=0;
     for (l = 0; l < lignes; l++) {
         for (c = 0; c < colonnes; c++) {
-		    sprintf(file, "img/cards/%dx%d/%d.jpg", colonnes, lignes, tab[i]);
+            sprintf(file, "img/cards/%dx%d/%d.jpg", colonnes, lignes, tab[i]);
             cards[l][c] = create_card(
                 GAME_MARGIN_RIGHT + (((WINDOW_WIDTH - (GAME_MARGIN_RIGHT + GAME_MARGIN_LEFT)) - (case_max_dimensions * colonnes)) / 2) + (c * case_max_dimensions),
                 GAME_MARGIN_TOP + (((WINDOW_HEIGHT - (GAME_MARGIN_TOP + GAME_MARGIN_BOTTOM)) - (case_max_dimensions * lignes)) / 2) + (l * case_max_dimensions),
@@ -101,10 +101,6 @@ int game(int colonnes, int lignes) {
         }
 
         if (ToucheEnAttente() && Touche()==XK_t){
-        cheat++;
-        }
-
-         while(cheat) {
             timer = stop_timer(timer);
             for (l = 0; l < lignes; l++) {
                 for (c = 0; c < colonnes; c++) {
@@ -118,17 +114,17 @@ int game(int colonnes, int lignes) {
 
             if (Touche()==XK_t){
                 CopierZone(2,0,GAME_MARGIN_RIGHT,GAME_MARGIN_TOP,WINDOW_WIDTH - (GAME_MARGIN_RIGHT + GAME_MARGIN_LEFT),WINDOW_HEIGHT - (GAME_MARGIN_TOP + GAME_MARGIN_BOTTOM),GAME_MARGIN_RIGHT,GAME_MARGIN_TOP);
+                while (SourisCliquee());
                 timer = start_timer(timer);
-                cheat=0;
             }
         }
     }
-    
+
     for (l = 0; l < lignes; l++) {
         for (c = 0; c < colonnes; c++) {
             free(cards[l][c].file);
         }
     }
-    
+
     return fin(stop_timer(timer));
 }
