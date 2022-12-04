@@ -8,7 +8,7 @@ int fin(unsigned long int timer) {
     zone recommencer = {375, 665, 150, 35};
     zone quitter_fin = {735, 665, 100, 35};
 
-    ChargerImage("./../img/backgrounds/peeposhy.png", 225, 100, 0, 0, 800, 550);
+    ChargerImage("img/backgrounds/peeposhy.png", 225, 100, 0, 0, 800, 550);
 
     ChoisirCouleurDessin(CouleurParNom("black"));
     EcrireTexte(550, 150, "You Win !", 2);
