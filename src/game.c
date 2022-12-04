@@ -80,6 +80,8 @@ int game(int colonnes, int lignes) {
             i++;
         }
     }
+    free(file);
+
     timer = start_timer(0);
 
     boucle = 1;
@@ -95,6 +97,12 @@ int game(int colonnes, int lignes) {
                     }
                 }
             }
+        }
+    }
+    
+    for (l = 0; l < lignes; l++) {
+        for (c = 0; c < colonnes; c++) {
+            free(cards[l][c].file);
         }
     }
     
