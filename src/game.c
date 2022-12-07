@@ -12,8 +12,22 @@
 #define GAME_MARGIN_TOP 35
 #define GAME_MARGIN_BOTTOM 20
 
+int update_coups(int coups) {
+    char buf[100];
+
+    ChoisirEcran(3);
+    EffacerEcran(CouleurParComposante(54, 57, 63));
+    ChoisirCouleurDessin(CouleurParNom("white"));
+    snprintf(buf, 100, "Coups : %d", coups);
+    EcrireTexte(180, 20, buf, 1);
+    CopierZone(3, 0, 170, 0, 150, 30, 170, 0);
+    ChoisirEcran(0);
+
+    return coups+1;
+}
+
 int game(int colonnes, int lignes) {
-    int i, j, t, used, r, l, c, case_max_width, case_max_height, case_max_dimensions, case_margin, boucle, cheat;
+    int i, j, t, used, r, l, c, case_max_width, case_max_height, case_max_dimensions, case_margin, boucle, coups;
     unsigned long int timer;
     char *file = (char*)malloc(30 * sizeof(char));
     size_t k, m;
@@ -83,9 +97,9 @@ int game(int colonnes, int lignes) {
     free(file);
 
     timer = start_timer(0);
+    coups = update_coups(0);
 
     boucle = 1;
-    cheat=0;
     while (boucle) {
         update_timer(timer);
 
@@ -95,6 +109,7 @@ int game(int colonnes, int lignes) {
                 for (c = 0; c < colonnes; c++) {
                     if (check_zone(cards[l][c].zone, _X, _Y)) {
                         cards[l][c] = show_card(cards[l][c]);
+                        coups = update_coups(coups);
                     }
                 }
             }
