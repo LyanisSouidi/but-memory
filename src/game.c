@@ -112,11 +112,10 @@ int game(int colonnes, int lignes) {
 
             CopierZone(1,0,GAME_MARGIN_RIGHT,GAME_MARGIN_TOP,WINDOW_WIDTH - (GAME_MARGIN_RIGHT + GAME_MARGIN_LEFT),WINDOW_HEIGHT - (GAME_MARGIN_TOP + GAME_MARGIN_BOTTOM),GAME_MARGIN_RIGHT,GAME_MARGIN_TOP);
 
-            if (Touche()==XK_t){
-                CopierZone(2,0,GAME_MARGIN_RIGHT,GAME_MARGIN_TOP,WINDOW_WIDTH - (GAME_MARGIN_RIGHT + GAME_MARGIN_LEFT),WINDOW_HEIGHT - (GAME_MARGIN_TOP + GAME_MARGIN_BOTTOM),GAME_MARGIN_RIGHT,GAME_MARGIN_TOP);
-                while (SourisCliquee());
-                timer = start_timer(timer);
-            }
+            while (Touche()!=XK_t);
+            CopierZone(2,0,GAME_MARGIN_RIGHT,GAME_MARGIN_TOP,WINDOW_WIDTH - (GAME_MARGIN_RIGHT + GAME_MARGIN_LEFT),WINDOW_HEIGHT - (GAME_MARGIN_TOP + GAME_MARGIN_BOTTOM),GAME_MARGIN_RIGHT,GAME_MARGIN_TOP);
+            while (SourisCliquee());
+            timer = start_timer(timer);
         }
     }
 
