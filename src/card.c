@@ -35,3 +35,7 @@ card create_card(int x, int y,  int L, int H, int id, char *file) {
     DessinerRectangle(carte.zone.x, carte.zone.y, carte.zone.L, carte.zone.H);
     return carte;
 }
+
+card hide_card(zone carte0, card carte){
+    CopierZone(4, 0, carte0.x, carte0.y, carte0.L, carte0.H, carte.zone.x, carte.zone.y);
+}

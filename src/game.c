@@ -96,8 +96,21 @@ int game(int colonnes, int lignes) {
     }
     free(file);
 
+    zone carte0 = {cards[0][0].zone.x, cards[0][0].zone.y, cards[0][0].zone.L, cards[0][0].zone.H};
+
+    ChoisirEcran(4);
+    sprintf(file, "img/cards/%dx%d/0.jpg", colonnes, lignes);
+    ChargerImage(file, cards[0][0].zone.x, cards[0][0].zone.y, 0, 0, cards[0][0].zone.L, cards[0][0].zone.H);
+    ChoisirEcran(0);
+
     timer = start_timer(0);
     coups = update_coups(0);
+
+    for (l = 0; l < lignes; l++) {
+        for (c = 0; c < colonnes; c++) {
+            hide_card(carte0, cards[l][c]);
+        }
+    }
 
     boucle = 1;
     while (boucle) {
