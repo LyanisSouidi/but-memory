@@ -32,7 +32,6 @@ card create_card(int x, int y,  int L, int H, int id, char *file) {
     memcpy(filename, file, 30);
     zone zone = {x, y, L, H};
     card carte = {zone, 0, 0, 0, id, filename};
-    DessinerRectangle(carte.zone.x, carte.zone.y, carte.zone.L, carte.zone.H);
     return carte;
 }
 
