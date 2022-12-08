@@ -8,4 +8,6 @@ unsigned long int start_timer(unsigned long int start);
 
 unsigned long int stop_timer(unsigned long int start);
 
+void wait(int sec);
+
 #endif

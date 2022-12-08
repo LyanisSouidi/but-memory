@@ -31,3 +31,8 @@ unsigned long int start_timer(unsigned long int start) {
 unsigned long int stop_timer(unsigned long int start) {
 	return Microsecondes() - start;
 }
+
+void wait(int sec) {
+    unsigned long int end = Microsecondes() + (sec * DELTA);
+    while (Microsecondes() <= end);
+}
