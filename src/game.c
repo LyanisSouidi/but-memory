@@ -94,6 +94,7 @@ int game(int colonnes, int lignes) {
             i++;
         }
     }
+    free(tab);
     free(file);
 
     zone carte0 = {cards[0][0].zone.x, cards[0][0].zone.y, cards[0][0].zone.L, cards[0][0].zone.H};
