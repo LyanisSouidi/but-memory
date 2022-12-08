@@ -31,6 +31,7 @@ int game(int colonnes, int lignes) {
     unsigned long int timer;
     char *file = (char*)malloc(30 * sizeof(char));
     size_t k, m;
+    card* last_card = NULL; 
     int* tab = malloc(sizeof(int) * (colonnes * lignes));
     srand(time(NULL));
 
@@ -121,9 +122,22 @@ int game(int colonnes, int lignes) {
         if (SourisCliquee()) {
             for (l = 0; l < lignes; l++) {
                 for (c = 0; c < colonnes; c++) {
-                    if (check_zone(cards[l][c].zone, _X, _Y)) {
+                    if (check_zone(cards[l][c].zone, _X, _Y) && !cards[l][c].displayed && !cards[l][c].found) {
                         cards[l][c] = show_card(cards[l][c]);
                         coups = update_coups(coups+1);
+                        if (last_card != NULL)  {
+                            if (!last_card->found && last_card->displayed && (cards[l][c].zone.x != last_card->zone.x || cards[l][c].zone.y != last_card->zone.y)) {
+                                if (cards[l][c].id == last_card->id) {
+                                    last_card->found = 1;
+                                    cards[l][c].found = 1;
+                                } else {
+                                    wait(1);
+                                    cards[l][c] = hide_card(carte0, cards[l][c]);
+                                    *last_card = hide_card(carte0, *last_card);
+                                }
+                            }
+                        }
+                        last_card = &cards[l][c];
                     }
                 }
             }
