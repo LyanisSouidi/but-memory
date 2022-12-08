@@ -23,7 +23,7 @@ int update_coups(int coups) {
     CopierZone(3, 0, 170, 0, 150, 30, 170, 0);
     ChoisirEcran(0);
 
-    return coups+1;
+    return coups;
 }
 
 int game(int colonnes, int lignes) {
@@ -122,7 +122,7 @@ int game(int colonnes, int lignes) {
                 for (c = 0; c < colonnes; c++) {
                     if (check_zone(cards[l][c].zone, _X, _Y)) {
                         cards[l][c] = show_card(cards[l][c]);
-                        coups = update_coups(coups);
+                        coups = update_coups(coups+1);
                     }
                 }
             }
@@ -153,5 +153,5 @@ int game(int colonnes, int lignes) {
         }
     }
 
-    return fin(stop_timer(timer));
+    return fin(stop_timer(timer), coups);
 }

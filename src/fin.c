@@ -4,7 +4,7 @@
 #include"../include/main.h"
 #include"../include/timer.h"
 
-int fin(unsigned long int timer) {
+int fin(unsigned long int timer, int coups) {
     zone recommencer = {375, 665, 150, 35};
     zone quitter_fin = {735, 665, 100, 35};
 
@@ -22,6 +22,9 @@ int fin(unsigned long int timer) {
     }
     snprintf(buf, 100, "Votre temps : %02d:%02d", minutes, secondes);
     EcrireTexte(530, 200, buf, 1);
+
+    snprintf(buf, 100, "Votre nombre de coups : %d", coups);
+    EcrireTexte(495, 250, buf, 1);
 
     dessiner_bouton(recommencer, "Recommencer", CouleurParNom("black"), CouleurParNom("dark green"), CouleurParNom("dark green"), 1);
 
