@@ -27,7 +27,7 @@ int update_coups(int coups) {
 }
 
 int game(int colonnes, int lignes) {
-    int i, j, t, used, r, l, c, case_max_width, case_max_height, case_max_dimensions, case_margin, boucle, coups;
+    int i, j, t, used, r, l, c, case_max_width, case_max_height, case_max_dimensions, case_margin, boucle, coups, nb_paires_trouvees;
     unsigned long int timer;
     char *file = (char*)malloc(30 * sizeof(char));
     size_t k, m;
@@ -114,8 +114,8 @@ int game(int colonnes, int lignes) {
         }
     }
 
-    boucle = 1;
-    while (boucle) {
+    nb_paires_trouvees = 0;
+    while (nb_paires_trouvees < ((colonnes * lignes) / 2)) {
         update_timer(timer);
 
         SourisPosition();
@@ -130,6 +130,7 @@ int game(int colonnes, int lignes) {
                                 if (cards[l][c].id == last_card->id) {
                                     last_card->found = 1;
                                     cards[l][c].found = 1;
+                                    nb_paires_trouvees++;
                                 } else {
                                     wait(1);
                                     cards[l][c] = hide_card(carte0, cards[l][c]);
