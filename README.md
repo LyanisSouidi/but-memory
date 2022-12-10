@@ -33,14 +33,14 @@ Une fois la [compilation du programme](#compilation) faite, exécuter le program
  -   Un mode tricheur est accessible en pressant la touche `t` qui découvre la grille et interrompt le temps jusqu'à ce qu'on rappuie sur cette même touche pour reprendre la partie.
 
 ### Fonctionnalités additionnelles
- - Affichage du temps en secondes **et en minutes**
- - Compteur de coups
+ -   Affichage du temps en secondes **et en minutes**
+ -   Compteur de coups
 
 ## Dépendances
 ### Bibliothèque graphique de l'IUT de Fontainebleau
-Documentation : http://www.iut-fbleau.fr/sitebp/doc/doc_bib_graphique/
-Auteur : Denis Monnerat (@monnerat)
+ -   Documentation : http://www.iut-fbleau.fr/sitebp/doc/doc_bib_graphique/
+ -   Auteur : Denis Monnerat (@monnerat)
 
 ## Crédits
- - Recherche des images : @moguljak
- - Code : @moguljak et @souidi
+ -   Recherche des images : Tom Moguljak (@moguljak)
+ -   Code : Tom Moguljak (@moguljak) et Lyanis Souidi (@souidi)
