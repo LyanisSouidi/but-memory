@@ -29,10 +29,10 @@ int update_coups(int coups) {
 int game(int colonnes, int lignes) {
     int i, j, t, used, r, l, c, case_max_width, case_max_height, case_max_dimensions, case_margin, boucle, coups, nb_paires_trouvees;
     unsigned long int timer;
-    char *file = (char*)malloc(30 * sizeof(char));
+    char file[30];
     size_t k, m;
     card* last_card = NULL; 
-    int* tab = malloc(sizeof(int) * (colonnes * lignes));
+    int tab[colonnes * lignes];
     srand(time(NULL));
 
     for (i = 1; i > -1; i--) {
@@ -95,8 +95,6 @@ int game(int colonnes, int lignes) {
             i++;
         }
     }
-    free(tab);
-    free(file);
 
     zone carte0 = {cards[0][0].zone.x, cards[0][0].zone.y, cards[0][0].zone.L, cards[0][0].zone.H};
 
